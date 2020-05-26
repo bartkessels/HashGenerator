@@ -1,6 +1,4 @@
 #include "gui/MainWindow/MainWindow.hpp"
-
-#include <utility>
 #include "./ui_MainWindow.h"
 
 #include <iostream>
