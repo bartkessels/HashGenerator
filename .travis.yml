@@ -9,7 +9,7 @@ addons:
     update: true
     packages:
       - qt5-default
-      - qtdeclarative5-dev
+      - qtbase5-dev
 
   homebrew:
     update: true
