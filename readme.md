@@ -1,5 +1,6 @@
 # Hash Generator
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/24d3e47712e341198c87ce8f8dd04e1d)](https://app.codacy.com/manual/bartkessels/HashGenerator?utm_source=github.com&utm_medium=referral&utm_content=bartkessels/HashGenerator&utm_campaign=Badge_Grade_Dashboard)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 Application to generate different kind of hashes
