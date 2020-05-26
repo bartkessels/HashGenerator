@@ -25,10 +25,12 @@ MainWindow::MainWindow(const std::shared_ptr<hashgen::domain::HashFactory>& hash
     }
 }
 
-
 void MainWindow::displayAboutDialog()
 {
-    QMessageBox::about(this, "Hash Generator", "(c) Bart Kessels");
+    const auto& title = "Hash Generator";
+    const auto& description = "Hash Generator is a small application to generate multiple hashes from any input string you give it. The code is designed to easily add new hashing algorithms so if you're missing anything feel free to open a pull-request or create an issue.";
+
+    QMessageBox::about(this, title, description);
 }
 
 void MainWindow::displayAboutQtDialog()
