@@ -55,9 +55,11 @@ set(HEADERFILES
         gui/MainWindow/MainWindow.hpp
 )
 
-add_executable(hashgen
+add_executable(
+        hashgen
         ${HEADERFILES}
         ${SOURCEFILES}
+        ../resources/resources.qrc
 )
 
 # Libraries

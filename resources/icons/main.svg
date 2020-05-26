@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?> <!-- Created with Vectornator for iOS (http://vectornator.io/) --><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg height="100%" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="100%" xmlns:vectornator="http://vectornator.io" version="1.1" viewBox="0 0 512 512">
+<metadata>
+<vectornator:setting key="DisplayWhiteBackground" value="0"/>
+<vectornator:setting key="RulersVisible" value="1"/>
+<vectornator:setting key="SnapToEdges" value="0"/>
+<vectornator:setting key="Units" value="Pixels"/>
+<vectornator:setting key="New" value="0"/>
+<vectornator:setting key="DynamicGuides" value="0"/>
+<vectornator:setting key="SnapToPoints" value="0"/>
+<vectornator:setting key="CMYKEnabledKey" value="0"/>
+<vectornator:setting key="SnapToGrid" value="0"/>
+<vectornator:setting key="SnapToGuides" value="1"/>
+<vectornator:setting key="GridSpacing" value="36"/>
+</metadata>
+<defs/>
+<g id="Layer 1" vectornator:layerName="Layer 1">
+<path d="M122.826+25L389.174+25C442.386+25+485.523+72.0697+485.523+130.133L485.523+381.867C485.523+439.93+442.386+487+389.174+487L122.826+487C69.6142+487+26.4775+439.93+26.4775+381.867L26.4775+130.133C26.4775+72.0697+69.6142+25+122.826+25Z" opacity="1" fill="#53c3ff"/>
+<g opacity="1">
+<path d="M285.603+309.582L214.961+309.582L195.025+400.005L175.522+400.005L195.458+309.582L153.853+309.582L153.853+293.725L198.925+293.725L213.227+227.729L171.622+227.729L171.622+211.873L216.694+211.873L236.63+121.449L256.133+121.449L236.197+211.873L306.839+211.873L326.775+121.449L346.278+121.449L326.342+211.873L367.947+211.873L367.947+227.729L322.875+227.729L308.573+293.725L350.178+293.725L350.178+309.582L305.106+309.582L285.17+400.005L265.667+400.005L285.603+309.582ZM218.428+293.725L289.07+293.725L303.372+227.729L232.73+227.729L218.428+293.725Z" opacity="1" fill="#ffffff"/>
+</g>
+</g>
+</svg>
