@@ -7,7 +7,7 @@ set(CMAKE_AUTORCC ON)
 
 find_package(Qt5 COMPONENTS Widgets Core REQUIRED)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 
 set(SOURCEFILES
         domain/hashes/Keccak224Hash.cpp
