@@ -60,7 +60,7 @@ jobs:
         - export PATH=`pwd`/cmake-3.15.7-Darwin-x86_64/bin:$PATH
       before_script: *before_script
       script: &script_test_macos
-        - cmake .. -DCMAKE_PREFIX_PATH=/usr/local/Cellar/qt/
+        - cmake .. -DCMAKE_PREFIX_PATH=/usr/local/opt/qt
         - make hashgen_tests
         - ./bin/hashgen_tests
 
@@ -104,7 +104,7 @@ jobs:
       install: *install_macos
       before_script: *before_script
       script: &script_build_macos
-        - cmake .. -DCMAKE_PREFIX_PATH=/usr/local/Cellar/qt/
+        - cmake .. -DCMAKE_PREFIX_PATH=/usr/local/opt/qt
         - make hashgen
 
     - stage: build
