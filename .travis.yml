@@ -58,12 +58,9 @@ jobs:
         - wget https://github.com/Kitware/CMake/releases/download/v3.15.7/cmake-3.15.7-Darwin-x86_64.tar.gz
         - tar -xf cmake-3.15.7-Darwin-x86_64.tar.gz
         - export PATH=`pwd`/cmake-3.15.7-Darwin-x86_64/bin:$PATH
-      before_script: &before_script_macos
-        - brew link qt5
-        - mkdir build
-        - cd build
+      before_script: *before_script
       script: &script_test_macos
-        - cmake ..
+        - cmake .. -DCMAKE_PREFIX_PATH=/usr/local/Cellar/qt/
         - make hashgen_tests
         - ./bin/hashgen_tests
 
@@ -73,7 +70,7 @@ jobs:
       language: cpp
       compiler: clang
       install: *install_macos
-      before_script: *before_script_macos
+      before_script: *before_script
       script: *script_test_macos
 
     ###############################
@@ -105,9 +102,9 @@ jobs:
       language: cpp
       compiler: gcc
       install: *install_macos
-      before_script: *before_script_macos
+      before_script: *before_script
       script: &script_build_macos
-        - cmake ..
+        - cmake .. -DCMAKE_PREFIX_PATH=/usr/local/Cellar/qt/
         - make hashgen
 
     - stage: build
@@ -116,5 +113,5 @@ jobs:
       language: cpp
       compiler: clang
       install: *install_macos
-      before_script: *before_script_macos
+      before_script: *before_script
       script: *script_build_macos
