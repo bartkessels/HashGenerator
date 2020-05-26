@@ -63,7 +63,7 @@ $ make hashgen_tests
 $ ./bin/hashgen_tests
 ```
 
-### 4.2 application
+### 4.2 Application
 
 ```bash
 $ cd build
