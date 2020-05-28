@@ -1,6 +1,6 @@
 # Hash Generator
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Build Status](https://travis-ci.org/bartkessels/HashGenerator.svg?branch=development)](https://travis-ci.org/bartkessels/HashGenerator)
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/1ef83a55516e4089962d0f5c8dbadcea)](https://www.codacy.com/manual/bartkessels/HashGenerator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bartkessels/HashGenerator&amp;utm_campaign=Badge_Grade)
 
