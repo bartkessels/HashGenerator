@@ -2,7 +2,9 @@ cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
 
 find_package(Qt5 COMPONENTS Core REQUIRED)
 
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} --coverage")
 
 set(SRCFILES
         ../src/domain/hashes/Keccak224Hash.cpp
