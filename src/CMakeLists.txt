@@ -63,6 +63,11 @@ add_executable(
         ../resources/resources.qrc
 )
 
+install(TARGETS ${BINARY_NAME}
+        RUNTIME
+        DESTINATION bin
+)
+
 # Libraries
 target_link_libraries(${BINARY_NAME} PUBLIC ${LIBRARIES})
 
@@ -79,12 +84,5 @@ elseif (WIN32)
             POST_BUILD
             COMMAND windeployqt.exe bin/Release/${BINARY_NAME}.exe
             WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
-    )
-
-    add_custom_command(
-            TARGET ${BINARY_NAME}
-            POST_BUILD
-            COMMAND binarycreator.exe -c config.xml -p ../../build/bin/Release HashGeneratorInstaller
-            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/../packaging/windows
     )
 endif ()

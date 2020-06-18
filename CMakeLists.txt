@@ -1,9 +1,12 @@
 cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
 
 set(BINARY_NAME hashgen)
+set(VER_MAJOR 1)
+set(VER_MINOR 0)
+set(VER_PATCH 0)
 
 project(HashGenerator
-  VERSION 1.0.0
+  VERSION ${VER_MAJOR}.${VER_MINOR}.${VER_PATCH}
   DESCRIPTION "Application to generate different kind of hashes"
   HOMEPAGE_URL "https://github.com/bartkessels/HashGenerator"
 )
@@ -19,3 +22,5 @@ add_subdirectory(third_party)
 add_subdirectory(src)
 add_subdirectory(tests)
 add_subdirectory(packaging)
+
+include(CPack)

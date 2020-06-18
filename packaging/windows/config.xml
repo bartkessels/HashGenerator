@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Installer>
-    <Name>HashGenerator</Name>
-    <Version>Latest</Version>
-    <Title>HashGenerator</Title>
-    <Publisher>Bart Kessels</Publisher>
-    <TargetDir>@ApplicationsDir@/HashGenerator</TargetDir>
-</Installer>
