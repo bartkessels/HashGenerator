@@ -8,11 +8,9 @@ init:
   - set makefiles="NMake Makefiles"
   - call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat" %PLATFORM%
 
-before_build:
+build_script:
   - mkdir build
   - cd build
-
-build_script:
   - cmake .. -DCMAKE_PREFIX_PATH=C:\Qt\5.14\msvc2017_64
   - nmake
 
