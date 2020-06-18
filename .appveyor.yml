@@ -15,7 +15,8 @@ before_build:
 build_script:
   - cmake .. -DCMAKE_PREFIX_PATH=C:\Qt\5.14\msvc2017_64
   - devenv HashGenerator.sln /deploy Release
+  - copy bin\Release\hashgen.exe %APPVEYOR_BUILD_FOLDER%
 
 artifacts:
-  - path: bin\Release\hashgen.exe
-    name: binary
+  - path: hashgen.exe
+    name: hashgen_win_x64
