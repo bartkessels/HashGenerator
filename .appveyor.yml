@@ -2,6 +2,11 @@ image:
   - Visual Studio 2019
 platform:
   - x64
+configuration: Release
+
+environment:
+  Qt5_INSTALL_DIR: 'C:\Qt\5.14.2\msvc2019_64'
+  PATH: '%Qt5_INSTALL_DIR%\bin;c:\msys64\usr\bin;%PATH%'
 
 init:
   - set makefiles="NMake Makefiles"
@@ -12,5 +17,9 @@ before_build:
   - cd build
 
 build_script:
-  - cmake .. -DCMAKE_PREFIX_PATH=C:\Qt\5.14.2
+  - cmake ..
   - nmake hashgen
+
+artifacts:
+  - path: bin/hashgen.exe
+    name: binary
