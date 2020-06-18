@@ -16,11 +16,11 @@ before_build:
   - cd build
 
 build_script:
-  - where binarycreator
   - cmake .. -DCMAKE_PREFIX_PATH=%QT_DIR%
   - devenv HashGenerator.sln /deploy Release
+  - cpack
+  - dir
   - dir bin\Release
-  - dir packaging/windows
   - copy bin\Release\hashgen.exe %APPVEYOR_BUILD_FOLDER%
 
 artifacts:
