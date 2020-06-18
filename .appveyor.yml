@@ -8,8 +8,6 @@ environment:
   QT_DIR: C:\Qt\5.14\msvc2017_64
 
 init:
-  - set PATH=%QT_DIR%\bin;%PATH%
-  - set makefiles="NMake Makefiles"
   - call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat" %PLATFORM%
 
 before_build:
@@ -17,6 +15,7 @@ before_build:
   - cd build
 
 build_script:
+  - set PATH=%QT_DIR%\bin;%PATH%
   - cmake .. -DCMAKE_PREFIX_PATH=%QT_DIR%
   - devenv HashGenerator.sln /deploy Release
   - dir bin\Release
