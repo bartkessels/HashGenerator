@@ -5,7 +5,7 @@ platform:
 configuration: Release
 
 environment:
-  QT_DIR: C:\Qt\5.14\msvc2017_64
+  QT_DIR: C:\Qt\latest\msvc2017_64
 
 init:
   - set PATH=%QT_DIR%\bin;%PATH%
@@ -17,6 +17,8 @@ before_build:
 
 build_script:
   - dir C:\Qt
+  - dir C:\Qt\Latest
+  - dir C:\Qt\Tools
   - cmake .. -DCMAKE_PREFIX_PATH=%QT_DIR%
   - devenv HashGenerator.sln /deploy Release
   - dir bin\Release
