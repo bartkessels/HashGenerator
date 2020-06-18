@@ -19,10 +19,7 @@ build_script:
   - cmake .. -DCMAKE_PREFIX_PATH=%QT_DIR%
   - devenv HashGenerator.sln /deploy Release
   - cpack
-  - dir
-  - dir x64
-  - dir x64\Release /s
-  - copy bin\Release\hashgen.exe %APPVEYOR_BUILD_FOLDER%
+  - copy HashGenerator-*.exe %APPVEYOR_BUILD_FOLDER%\hashgen_win_x64.exe
 
 artifacts:
   - path: hashgen.exe
@@ -34,7 +31,7 @@ deploy:
   provider: GitHub
   auth_token:
     secure: oVwM4c3g2neQP4u9719kh6c76dYZfc/zrYc4gobomH3tWDP3m9eFeu0+ojh4VR68
-  artifact: hashgen_win_x64
+  artifact: hashgen_win_x64.exe
   draft: false
   prerelease: false
   on:
