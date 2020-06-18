@@ -8,6 +8,7 @@ environment:
   QT_DIR: C:\Qt\5.14\msvc2017_64
 
 init:
+  - set PATH=%QT_DIR%\bin;%PATH%
   - call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat" %PLATFORM%
 
 before_build:
