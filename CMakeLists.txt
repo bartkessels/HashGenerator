@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
 
 project(HashGenerator
-  VERSION 0.0.1
+  VERSION 1.0.0
   DESCRIPTION "Application to generate different kind of hashes"
   HOMEPAGE_URL "https://github.com/bartkessels/HashGenerator"
 )
