@@ -1,8 +1,7 @@
 language: cpp
 
 stages:
-  - build
-  - test
+  - build & test
 
 env:
   - MAC_QT_DIR=/usr/local/opt/qt
@@ -26,7 +25,7 @@ jobs:
     ##            TEST
     ###############################
 
-    - stage: test
+    - stage: build & test
       os: linux
       dist: bionic
       language: cpp
@@ -40,57 +39,11 @@ jobs:
         - cd build
       script: &script_test_linux
         - cmake ..
-        - make hashgen_tests
+        - make
         - ./bin/hashgen_tests
+        - cpack
       after_success:
         - bash <(curl -s https://codecov.io/bash)
-
-    - stage: test
-      os: linux
-      dist: bionic
-      language: cpp
-      compiler: clang
-      install: *install_linux
-      before_script: *before_script
-      script: *script_test_linux
-
-    - stage: test
-      os: osx
-      osx_image: xcode11.4
-      language: cpp
-      compiler: gcc
-      install: &install_macos
-        - wget https://github.com/Kitware/CMake/releases/download/v3.15.7/cmake-3.15.7-Darwin-x86_64.tar.gz
-        - tar -xf cmake-3.15.7-Darwin-x86_64.tar.gz
-        - export PATH=`pwd`/cmake-3.15.7-Darwin-x86_64/bin:$PATH
-      before_script: *before_script
-      script: &script_test_macos
-        - cmake .. -DCMAKE_PREFIX_PATH=$MAC_QT_DIR
-        - make hashgen_tests
-        - ./bin/hashgen_tests
-
-    - stage: test
-      os: osx
-      osx_image: xcode11.4
-      language: cpp
-      compiler: clang
-      install: *install_macos
-      before_script: *before_script
-      script: *script_test_macos
-
-    ###############################
-    ##            BUILD
-    ###############################
-    - stage: build
-      os: linux
-      dist: bionic
-      language: cpp
-      compiler: gcc
-      install: *install_linux
-      before_script: *before_script
-      script: &script_build_linux
-        - cmake ..
-        - make hashgen
       before_deploy:
         - mv ./bin/hashgen ./bin/hashgen_linux_x64
       deploy:
@@ -103,29 +56,33 @@ jobs:
         on:
           tags: true
 
-    - stage: build
+    - stage: build & test
       os: linux
       dist: bionic
       language: cpp
       compiler: clang
       install: *install_linux
       before_script: *before_script
-      script: *script_build_linux
+      script: *script_test_linux
 
-    - stage: build
+    - stage: build & test
       os: osx
       osx_image: xcode11.4
       language: cpp
       compiler: gcc
-      install: *install_macos
+      install: &install_macos
+        - wget https://github.com/Kitware/CMake/releases/download/v3.15.7/cmake-3.15.7-Darwin-x86_64.tar.gz
+        - tar -xf cmake-3.15.7-Darwin-x86_64.tar.gz
+        - export PATH=`pwd`/cmake-3.15.7-Darwin-x86_64/bin:$PATH
       before_script: *before_script
         - export PATH=$MAC_QT_DIR/bin:$PATH
-      script: &script_build_macos
+      script: &script_test_macos
         - cmake .. -DCMAKE_PREFIX_PATH=$MAC_QT_DIR
         - make
-        - cpack -g DragNDrop
+        - ./bin/hashgen_tests
+        - cpack -G DragNDrop
 
-    - stage: build
+    - stage: build & test
       os: osx
       osx_image: xcode11.4
       language: cpp
@@ -133,7 +90,7 @@ jobs:
       install: *install_macos
       before_script: *before_script
         - export PATH=$MAC_QT_DIR/bin:$PATH
-      script: *script_build_macos
+      script: *script_test_macos
       before_deploy:
         - mv ./bin/HashGenerator-*.dmg ./bin/hashgen_macos_x64.dmg
       deploy:
