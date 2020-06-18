@@ -14,9 +14,8 @@ before_build:
 
 build_script:
   - cmake .. -DCMAKE_PREFIX_PATH=C:\Qt\5.14\msvc2017_64
-  - devenv HashGenerator.sln /build
-  - dir /b /o:gn
+  - devenv HashGenerator.sln /Deploy
 
 artifacts:
-  - path: bin\hashgen.exe
+  - path: bin\Release\hashgen.exe
     name: binary
