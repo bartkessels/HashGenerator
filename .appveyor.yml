@@ -16,8 +16,7 @@ before_build:
   - cd build
 
 build_script:
-  - dir %QT_DIR%\bin
-  - dir %QT_DIR%\plugins
+  - dir C:\Qt
   - cmake .. -DCMAKE_PREFIX_PATH=%QT_DIR%
   - devenv HashGenerator.sln /deploy Release
   - dir bin\Release
