@@ -40,7 +40,6 @@ jobs:
       after_success:
         - bash <(curl -s https://codecov.io/bash)
       before_deploy:
-        - HashGenerator-1.0.0-Linux.tar.gz
         - mv ./HashGenerator-*.tar.gz ./hashgen_linux_x64.tar.gz
       deploy:
         provider: releases
