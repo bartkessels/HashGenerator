@@ -70,22 +70,20 @@ if (APPLE)
     add_custom_command(
             TARGET ${BINARY_NAME}
             POST_BUILD
-            COMMAND macdeployqt build//bin/${BINARY_NAME}.app
+            COMMAND macdeployqt build/bin/${BINARY_NAME}.app
             WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     )
 elseif (WIN32)
     add_custom_command(
             TARGET ${BINARY_NAME}
             POST_BUILD
-            COMMAND windeployqt build/bin/Release/${BINARY_NAME}.exe
-            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+            COMMAND windeployqt ${CMAKE_BINARY_DIR}/build/bin/Release/${BINARY_NAME}.exe
     )
 
     add_custom_command(
             TARGET ${BINARY_NAME}
             POST_BUILD
-            COMMAND copy ../../build/Release application/data
-            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/packaging/windows
+            COMMAND copy ${CMAKE_BINARY_DIR}/build/Release ${CMAKE_BINARY_DIR}/packaging/windows/application/data
     )
 
     add_custom_command(
