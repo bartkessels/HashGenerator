@@ -78,6 +78,6 @@ elseif (WIN32)
             TARGET ${BINARY_NAME}
             POST_BUILD
             COMMAND windeployqt ../bin/${BINARY_NAME}.exe
-            WORKING_DIRECTORY ${CMAKE_BINARY_DIR/src
+            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/src
     )
 endif ()
