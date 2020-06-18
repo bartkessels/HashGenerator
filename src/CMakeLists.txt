@@ -70,14 +70,28 @@ if (APPLE)
     add_custom_command(
             TARGET ${BINARY_NAME}
             POST_BUILD
-            COMMAND macdeployqt ../bin/${BINARY_NAME}.app
-            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/src
+            COMMAND macdeployqt build//bin/${BINARY_NAME}.app
+            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     )
 elseif (WIN32)
     add_custom_command(
             TARGET ${BINARY_NAME}
             POST_BUILD
-            COMMAND windeployqt ../bin/Release/${BINARY_NAME}.exe
-            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/src
+            COMMAND windeployqt build/bin/Release/${BINARY_NAME}.exe
+            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
+    )
+
+    add_custom_command(
+            TARGET ${BINARY_NAME}
+            POST_BUILD
+            COMMAND copy ../../build/Release application/data
+            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/packaging/windows
+    )
+
+    add_custom_command(
+            TARGET ${BINARY_NAME}
+            POST_BUILD
+            COMMAND binarycreator -c config.xml -p . HashGeneratorInstaller
+            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/packaging/windows
     )
 endif ()
