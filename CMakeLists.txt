@@ -1,5 +1,7 @@
 cmake_minimum_required(VERSION 3.15 FATAL_ERROR)
 
+set(BINARY_NAME hashgen)
+
 project(HashGenerator
   VERSION 1.0.0
   DESCRIPTION "Application to generate different kind of hashes"
@@ -16,3 +18,4 @@ set(CMAKE_EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/build)
 add_subdirectory(third_party)
 add_subdirectory(src)
 add_subdirectory(tests)
+add_subdirectory(packaging)

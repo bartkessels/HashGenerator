@@ -6,6 +6,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 
 find_package(Qt5 COMPONENTS Widgets Core REQUIRED)
+set(LIBRARIES Qt5::Widgets Qt5::Core)
 
 set(CMAKE_CXX_STANDARD 20)
 
@@ -56,11 +57,20 @@ set(HEADERFILES
 )
 
 add_executable(
-        hashgen
+        ${BINARY_NAME}
         ${HEADERFILES}
         ${SOURCEFILES}
         ../resources/resources.qrc
 )
 
 # Libraries
-target_link_libraries(hashgen Qt5::Widgets Qt5::Core)
+target_link_libraries(${BINARY_NAME} PUBLIC ${LIBRARIES})
+
+if (APPLE)
+    add_custom_command(
+            TARGET ${BINARY_NAME}
+            POST_BUILD
+            COMMAND macdeployqt ../bin/${BINARY_NAME}.app
+            WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/src
+    )
+endif
