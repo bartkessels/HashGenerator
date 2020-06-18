@@ -39,6 +39,8 @@ jobs:
         - cmake ..
         - make hashgen_tests
         - ./bin/hashgen_tests
+      after_success:
+        - bash <(curl -s https://codecov.io/bash)
 
     - stage: test
       os: linux
