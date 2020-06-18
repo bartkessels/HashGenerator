@@ -1,8 +1,13 @@
 # Hash Generator
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Build Status](https://travis-ci.org/bartkessels/HashGenerator.svg?branch=development)](https://travis-ci.org/bartkessels/HashGenerator)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/1ef83a55516e4089962d0f5c8dbadcea)](https://www.codacy.com/manual/bartkessels/HashGenerator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bartkessels/HashGenerator&amp;utm_campaign=Badge_Grade)
+
+<br>
+
+|__Linux / MacOS__|__Windows__|__Coverage__|
+|---|---|---|
+|[![Build Status](https://travis-ci.org/bartkessels/HashGenerator.svg?branch=development)](https://travis-ci.org/bartkessels/HashGenerator)|[![Build status](https://ci.appveyor.com/api/projects/status/a182byo6kb5bcsy7?svg=true)](https://ci.appveyor.com/project/bartkessels/hashgenerator)|[![Codacy Badge](https://app.codacy.com/project/badge/Grade/1ef83a55516e4089962d0f5c8dbadcea)](https://www.codacy.com/manual/bartkessels/HashGenerator?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=bartkessels/HashGenerator&amp;utm_campaign=Badge_Grade)|
+
 
 Application to generate different kind of hashes
 
