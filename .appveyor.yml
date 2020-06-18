@@ -4,8 +4,11 @@ platform:
   - x64
 configuration: Release
 
+environment:
+  QT_DIR: C:\Qt\latest\msvc2017_64
+
 init:
-  - set makefiles="NMake Makefiles"
+  - set PATH=%QT_DIR%\bin;%PATH%
   - call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat" %PLATFORM%
 
 before_build:
@@ -13,9 +16,10 @@ before_build:
   - cd build
 
 build_script:
-  - cmake .. -DCMAKE_PREFIX_PATH=C:\Qt\5.14\msvc2017_64
+  - cmake .. -DCMAKE_PREFIX_PATH=%QT_DIR%
   - devenv HashGenerator.sln /deploy Release
-  - copy bin\Release\hashgen.exe %APPVEYOR_BUILD_FOLDER%\hashgen_win_x64.exe
+  - cpack
+  - copy HashGenerator-*.exe %APPVEYOR_BUILD_FOLDER%\hashgen_win_x64.exe
 
 artifacts:
   - path: hashgen_win_x64.exe
@@ -26,7 +30,7 @@ deploy:
   provider: GitHub
   auth_token:
     secure: oVwM4c3g2neQP4u9719kh6c76dYZfc/zrYc4gobomH3tWDP3m9eFeu0+ojh4VR68
-  artifact: hashgen
+  artifact: hashgen_win_x64.exe
   draft: false
   prerelease: false
   on:

@@ -22,9 +22,13 @@ Application to generate different kind of hashes
     - [2.1 Supported hashing algorithms](#21-supported-algorithms)
 - [3. Required packages](#3-required-packages)
 - [4. Build](#4-build)
-    - [4.1 Tests](#41-tests)
-        - [4.1.1 Test coverage](#411-test-coverage)
-    - [4.2 Application](#42-application)
+    - [4.1 MacOS](#41-macos)
+    - [4.2 Linux](#42-linux)
+    - [4.3 Windows](#43-windows)
+- [5. Packaging](#5-packaging)
+    - [5.1 MacOS](#51-macos)
+    - [5.2 Linux](#52-linux)
+    - [5.3 Windows](#53-windows)
 
 ## 1. Screenshots
 
@@ -62,33 +66,87 @@ so there's no need to install any libraries or header files.
 
 ## 4. Build
 
-### 4.1 Tests
+### 4.1 MacOS
 
 ```bash
 $ mkdir build
 $ cd build
 $ cmake ..
-$ make hashgen_tests
-$ ./bin/hashgen_tests
-```
-### 4.1.1 Test coverage
-
-When building the tests the required compiler flags are set to generate the coverage reports for each
-individual source file. The coverage reports can be bundled using lcov which will generate a *.info file
-which can be transformed into a html file using the genhtml command.
-
-```bash
-$ lcov --directory tests/CMakeFiles/hashgen_tests.dir --capture --output-file hashgen_coverage.info
-$ genhtml -o coverage/ hashgen_coverage.info
-$ open coverage/index.html
+$ make
 ```
 
-### 4.2 Application
+After these commands completed you'll get two files in the `bin` folder, one for running the tests and
+a `.app` file which you can execute to run Hash Generator.
+
+Use `./bin/hashgen_tests` to run the tests
+
+Use `open bin/hashgen.app` to execute the application
+
+### 4.2 Linux
 
 ```bash
 $ mkdir build
 $ cd build
 $ cmake ..
-$ make hashgen
-$ ./bin/hashgen
+$ make
+```
+
+After these commands completed you'll get two files in the `bin` folder, one for running the tests and
+one for executing Hash Generator itself.
+
+Use `./bin/hashgen_tests` to run the tests
+
+Use `./bin/hashgen` to execute the application
+
+### 4.3 Windows
+
+```bat
+> cmake ..
+> devenv HashGenerator.sln /deploy Release
+```
+
+After these commands completed you'll get two files in the `bin/Release` folder, one for running the tests and
+one for executing Hash Generator itself.
+
+Use `bin/Release/hashgen_tests.exe` to run the tests
+
+Use `bin/Release/hashgen.exe` to execute the application
+
+## 5. Packaging
+
+To install Hash Generator we need to create an installable package for the platform you're currently on.
+
+You can only execute these steps if you've already built the application. The working directory for all the following
+platforms is assumed to be `build`.
+
+### 5.1 Macos
+
+On MacOS we'll create a `dmg` package in which you can drag the `hashgen.app` file into the `Applications` directory.
+As of right now you need to enter the bin directory to be able to see the `hashgen.app` file, this will be resolved so
+it's more user friendly.
+
+By executing the following command you'll get the `HashGenerator-<verion_number>-Darwin.dmg` file in the `build` directory.
+
+```bash
+$ cpack -g DragNDrop
+```
+
+### 5.2 Linux
+
+On Linux we'll create a tarball because there are so many distributions the only cross platform option is to generate a tarball.
+
+By executing the following command you'll get the `HashGenerator-<version-number>-Linux.tar.gz` file in the `build` directory.
+
+```bash
+$ cpack
+``` 
+
+### 5.3 Windows
+
+On Windows we'll create an executable to install Hash Generator into the program files directory.
+
+By executing the following command you'll get the `HashGenerator-<version_number>-Windows.exe` file in the `build` directory.
+
+```bat
+> cpack
 ```

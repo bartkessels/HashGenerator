@@ -1,9 +1,10 @@
 language: cpp
 
 stages:
-  - build
-  - test
-  - release
+  - build & test
+
+env:
+  - MAC_QT_DIR=/usr/local/opt/qt
 
 addons:
   apt:
@@ -19,12 +20,7 @@ addons:
 
 jobs:
   include:
-
-    ###############################
-    ##            TEST
-    ###############################
-
-    - stage: test
+    - stage: build & test
       os: linux
       dist: bionic
       language: cpp
@@ -38,12 +34,24 @@ jobs:
         - cd build
       script: &script_test_linux
         - cmake ..
-        - make hashgen_tests
+        - make
         - ./bin/hashgen_tests
+        - cpack
       after_success:
         - bash <(curl -s https://codecov.io/bash)
+      before_deploy:
+        - mv ./HashGenerator-*.tar.gz ./hashgen_linux_x64.tar.gz
+      deploy:
+        provider: releases
+        token:
+          secure: "QKliWJ5w6fYmZdpirfYVHl4Cu2kqr0Hozkw3r7WR1BAzgwx5utB5HpdnF2AIDZ0V1a+KohFbJLTTDphEWEDTd9GOXRzVEiB8f6k++7p6qh5LUYP1Gj2ijg2nOCT8OkNHZkxrraedfEWnJFAJVzDakl2c5n2L0ruWBA4+VRmG5mrWn2IwrwqEKhzYeZ2gep5GoRd3QQVP15rHQjZ0A39NsItqF6Zg5Oufxr/Q9YWoWp5YAlcP/UnEeuhtDgXrfVuB0LMdRpDvM1xldvlavgHqSY0qUfHVqkH/EbH7H5KZ3a2sx+fLSBU3zfvfydQ211lRjZsi9zusxnwMZ1A30YBCDl81GQ+4xMLIV/Zm3p+Fcs94d6H5rJW2ZhBq/o9F7p4W/dp4TciMq8PJBv9k6uN/mBIDpdJd5hkPD7UU5zi7w5qULW1+q8pWMEBPSOY8IactFqMGuk42ET2umFgGx2dAe4C62pFX/69qPGlyfM5xM1k6LM9ejCSrlQbk12KcVFfNV02+z5DkEaHyZdqFCmFNuasQ3AGxcjzSPKfhlMd2AAOypJEbaeOZyPIKEWc6LEPUQCHVKPaXLvjVlVuldH3ysT4pbuR/gEKyYAlct34g7JvHNbpv4waNYdsGe2akmvd53fTNU80UluCfUesQg3eMUKm38KJFQi7RygPtDv4h85U="
+        file: ./hashgen_linux_x64.tar.gz
+        cleanup: false
+        skip_cleanup: true
+        on:
+          tags: true
 
-    - stage: test
+    - stage: build & test
       os: linux
       dist: bionic
       language: cpp
@@ -52,7 +60,7 @@ jobs:
       before_script: *before_script
       script: *script_test_linux
 
-    - stage: test
+    - stage: build & test
       os: osx
       osx_image: xcode11.4
       language: cpp
@@ -61,81 +69,31 @@ jobs:
         - wget https://github.com/Kitware/CMake/releases/download/v3.15.7/cmake-3.15.7-Darwin-x86_64.tar.gz
         - tar -xf cmake-3.15.7-Darwin-x86_64.tar.gz
         - export PATH=`pwd`/cmake-3.15.7-Darwin-x86_64/bin:$PATH
-      before_script: *before_script
+      before_script: &before_script_macos
+        - mkdir build
+        - cd build
+        - export PATH=$MAC_QT_DIR/bin:$PATH
       script: &script_test_macos
-        - cmake .. -DCMAKE_PREFIX_PATH=/usr/local/opt/qt
-        - make hashgen_tests
+        - cmake .. -DCMAKE_PREFIX_PATH=$MAC_QT_DIR
+        - make
         - ./bin/hashgen_tests
+        - cpack -G DragNDrop
 
-    - stage: test
+    - stage: build & test
       os: osx
       osx_image: xcode11.4
       language: cpp
       compiler: clang
       install: *install_macos
-      before_script: *before_script
+      before_script: *before_script_macos
       script: *script_test_macos
-
-    ###############################
-    ##            BUILD
-    ###############################
-    - stage: build
-      os: linux
-      dist: bionic
-      language: cpp
-      compiler: gcc
-      install: *install_linux
-      before_script: *before_script
-      script: &script_build_linux
-        - cmake ..
-        - make hashgen
       before_deploy:
-        - mv ./bin/hashgen ./bin/hashgen_linux_x64
+        - mv ./HashGenerator-*.dmg ./hashgen_macos_x64.dmg
       deploy:
         provider: releases
         token:
           secure: "QKliWJ5w6fYmZdpirfYVHl4Cu2kqr0Hozkw3r7WR1BAzgwx5utB5HpdnF2AIDZ0V1a+KohFbJLTTDphEWEDTd9GOXRzVEiB8f6k++7p6qh5LUYP1Gj2ijg2nOCT8OkNHZkxrraedfEWnJFAJVzDakl2c5n2L0ruWBA4+VRmG5mrWn2IwrwqEKhzYeZ2gep5GoRd3QQVP15rHQjZ0A39NsItqF6Zg5Oufxr/Q9YWoWp5YAlcP/UnEeuhtDgXrfVuB0LMdRpDvM1xldvlavgHqSY0qUfHVqkH/EbH7H5KZ3a2sx+fLSBU3zfvfydQ211lRjZsi9zusxnwMZ1A30YBCDl81GQ+4xMLIV/Zm3p+Fcs94d6H5rJW2ZhBq/o9F7p4W/dp4TciMq8PJBv9k6uN/mBIDpdJd5hkPD7UU5zi7w5qULW1+q8pWMEBPSOY8IactFqMGuk42ET2umFgGx2dAe4C62pFX/69qPGlyfM5xM1k6LM9ejCSrlQbk12KcVFfNV02+z5DkEaHyZdqFCmFNuasQ3AGxcjzSPKfhlMd2AAOypJEbaeOZyPIKEWc6LEPUQCHVKPaXLvjVlVuldH3ysT4pbuR/gEKyYAlct34g7JvHNbpv4waNYdsGe2akmvd53fTNU80UluCfUesQg3eMUKm38KJFQi7RygPtDv4h85U="
-        file: ./bin/hashgen_linux_x64
-        cleanup: false
-        skip_cleanup: true
-        on:
-          tags: true
-
-    - stage: build
-      os: linux
-      dist: bionic
-      language: cpp
-      compiler: clang
-      install: *install_linux
-      before_script: *before_script
-      script: *script_build_linux
-
-    - stage: build
-      os: osx
-      osx_image: xcode11.4
-      language: cpp
-      compiler: gcc
-      install: *install_macos
-      before_script: *before_script
-      script: &script_build_macos
-        - cmake .. -DCMAKE_PREFIX_PATH=/usr/local/opt/qt
-        - make hashgen
-
-    - stage: build
-      os: osx
-      osx_image: xcode11.4
-      language: cpp
-      compiler: clang
-      install: *install_macos
-      before_script: *before_script
-      script: *script_build_macos
-      before_deploy:
-        - mv ./bin/hashgen ./bin/hashgen_macos_x64
-      deploy:
-        provider: releases
-        token:
-          secure: "QKliWJ5w6fYmZdpirfYVHl4Cu2kqr0Hozkw3r7WR1BAzgwx5utB5HpdnF2AIDZ0V1a+KohFbJLTTDphEWEDTd9GOXRzVEiB8f6k++7p6qh5LUYP1Gj2ijg2nOCT8OkNHZkxrraedfEWnJFAJVzDakl2c5n2L0ruWBA4+VRmG5mrWn2IwrwqEKhzYeZ2gep5GoRd3QQVP15rHQjZ0A39NsItqF6Zg5Oufxr/Q9YWoWp5YAlcP/UnEeuhtDgXrfVuB0LMdRpDvM1xldvlavgHqSY0qUfHVqkH/EbH7H5KZ3a2sx+fLSBU3zfvfydQ211lRjZsi9zusxnwMZ1A30YBCDl81GQ+4xMLIV/Zm3p+Fcs94d6H5rJW2ZhBq/o9F7p4W/dp4TciMq8PJBv9k6uN/mBIDpdJd5hkPD7UU5zi7w5qULW1+q8pWMEBPSOY8IactFqMGuk42ET2umFgGx2dAe4C62pFX/69qPGlyfM5xM1k6LM9ejCSrlQbk12KcVFfNV02+z5DkEaHyZdqFCmFNuasQ3AGxcjzSPKfhlMd2AAOypJEbaeOZyPIKEWc6LEPUQCHVKPaXLvjVlVuldH3ysT4pbuR/gEKyYAlct34g7JvHNbpv4waNYdsGe2akmvd53fTNU80UluCfUesQg3eMUKm38KJFQi7RygPtDv4h85U="
-        file: ./bin/hashgen_macos_x64
+        file: ./hashgen_macos_x64.dmg
         cleanup: false
         skip_cleanup: true
         on:
