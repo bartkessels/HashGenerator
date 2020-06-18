@@ -22,6 +22,7 @@ Application to generate different kind of hashes
 - [3. Required packages](#3-required-packages)
 - [4. Build](#4-build)
     - [4.1 Tests](#41-tests)
+        - [4.1.1 Test coverage](#411-test-coverage)
     - [4.2 Application](#42-application)
 
 ## 1. Screenshots
@@ -63,15 +64,28 @@ so there's no need to install any libraries or header files.
 ### 4.1 Tests
 
 ```bash
+$ mkdir build
 $ cd build
 $ cmake ..
 $ make hashgen_tests
 $ ./bin/hashgen_tests
 ```
+### 4.1.1 Test coverage
+
+When building the tests the required compiler flags are set to generate the coverage reports for each
+individual source file. The coverage reports can be bundled using lcov which will generate a *.info file
+which can be transformed into a html file using the genhtml command.
+
+```bash
+$ lcov --directory tests/CMakeFiles/hashgen_tests.dir --capture --output-file hashgen_coverage.info
+$ genhtml -o coverage/ hashgen_coverage.info
+$ open coverage/index.html
+```
 
 ### 4.2 Application
 
 ```bash
+$ mkdir build
 $ cd build
 $ cmake ..
 $ make hashgen

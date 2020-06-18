@@ -11,7 +11,7 @@ namespace hashgen::domain::hashes
     {
     public:
         Keccak256Hash() = default;
-        ~Keccak256Hash() override = default;
+        ~Keccak256Hash() = default;
 
         std::string hash(const std::string&) override;
 

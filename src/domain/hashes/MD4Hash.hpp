@@ -11,7 +11,7 @@ namespace hashgen::domain::hashes
     {
     public:
         MD4Hash() = default;
-        ~MD4Hash() override = default;
+        ~MD4Hash() = default;
 
         std::string hash(const std::string&) override;
 
