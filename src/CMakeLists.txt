@@ -84,7 +84,7 @@ elseif (WIN32)
     add_custom_command(
             TARGET ${BINARY_NAME}
             POST_BUILD
-            COMMAND binarycreator -c config.xml -p ../../build/bin/Release HashGeneratorInstaller
+            COMMAND binarycreator.exe -c config.xml -p ../../build/bin/Release HashGeneratorInstaller
             WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/../packaging/windows
     )
 endif ()
