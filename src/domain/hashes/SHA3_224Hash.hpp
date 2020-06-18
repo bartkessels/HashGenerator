@@ -11,7 +11,7 @@ namespace hashgen::domain::hashes
     {
     public:
         SHA3_224Hash() = default;
-        ~SHA3_224Hash() override = default;
+        ~SHA3_224Hash() = default;
 
         std::string hash(const std::string&) override;
 

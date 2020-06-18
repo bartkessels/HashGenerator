@@ -11,7 +11,7 @@ namespace hashgen::domain::hashes
     {
     public:
         MD5Hash() = default;
-        ~MD5Hash() override = default;
+        ~MD5Hash() = default;
 
         std::string hash(const std::string&) override;
 
@@ -19,9 +19,3 @@ namespace hashgen::domain::hashes
         const QCryptographicHash::Algorithm algorithm = QCryptographicHash::Algorithm::Md5;
     };
 }
-/*
-QCryptographicHash::Keccak_224	7	Generate a Keccak-224 hash sum. Introduced in Qt 5.9.2
-QCryptographicHash::Keccak_256	8	Generate a Keccak-256 hash sum. Introduced in Qt 5.9.2
-QCryptographicHash::Keccak_384	9	Generate a Keccak-384 hash sum. Introduced in Qt 5.9.2
-QCryptographicHash::Keccak_512
- */

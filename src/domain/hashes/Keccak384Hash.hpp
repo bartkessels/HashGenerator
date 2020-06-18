@@ -11,7 +11,7 @@ namespace hashgen::domain::hashes
     {
     public:
         Keccak384Hash() = default;
-        ~Keccak384Hash() override = default;
+        ~Keccak384Hash() = default;
 
         std::string hash(const std::string&) override;
 
