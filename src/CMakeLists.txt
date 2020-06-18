@@ -77,7 +77,7 @@ elseif (WIN32)
     add_custom_command(
             TARGET ${BINARY_NAME}
             POST_BUILD
-            COMMAND windeployqt ../bin/${BINARY_NAME}.exe
+            COMMAND windeployqt ../bin/Release/${BINARY_NAME}.exe
             WORKING_DIRECTORY ${CMAKE_BINARY_DIR}/src
     )
 endif ()
