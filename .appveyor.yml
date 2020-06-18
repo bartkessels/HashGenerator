@@ -18,7 +18,7 @@ before_build:
 
 build_script:
   - cmake .. -DCMAKE_PREFIX_PATH=%QT_DIR%
-  - dir %QT_DIR%
+  - dir %QT_DIR%\bin
   - devenv HashGenerator.sln /deploy Release
   - copy bin\Release\hashgen.exe %APPVEYOR_BUILD_FOLDER%
 
