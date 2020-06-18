@@ -9,7 +9,7 @@ init:
   - call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Auxiliary\Build\vcvarsall.bat" %PLATFORM%
 
 before_build:
-  - echo %QTDIR%
+  - dir C:\Qt\5.14 /s /b /o:gn
   - mkdir build
   - cd build
 
