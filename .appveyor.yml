@@ -14,7 +14,8 @@ before_build:
 
 build_script:
   - cmake .. -DCMAKE_PREFIX_PATH=C:\Qt\5.14\msvc2017_64
-  - nmake /F
+  - dir /b /o:gn
+  - nmake
 
 artifacts:
   - path: bin\hashgen.exe
