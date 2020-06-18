@@ -80,4 +80,4 @@ elseif (WIN32)
             COMMAND windeployqt ../bin/${BINARY_NAME}.exe
             WORKING_DIRECTORY ${CMAKE_BINARY_DIR/src
     )
-endif
+endif ()
