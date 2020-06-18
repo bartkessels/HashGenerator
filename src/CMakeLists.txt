@@ -84,7 +84,7 @@ elseif (WIN32)
     add_custom_command(
             TARGET ${BINARY_NAME}
             POST_BUILD
-            COMMAND copy bin/Release ../packaging/windows/application/data
+            COMMAND xcopy bin/release ../packaging/windows/application/data /h /e /i /y
             WORKING_DIRECTORY ${CMAKE_BINARY_DIR}
     )
 
