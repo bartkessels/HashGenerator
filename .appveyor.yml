@@ -16,9 +16,7 @@ before_build:
   - cd build
 
 build_script:
-  - dir C:\Qt\Tools
-  - dir C:\Qt\Tools\mingw730_64
-  - dir C:\Qt\Tools\mingw730_64\bin
+  - dir C:\Qt
   - cmake .. -DCMAKE_PREFIX_PATH=%QT_DIR%
   - devenv HashGenerator.sln /deploy Release
   - dir bin\Release
