@@ -15,19 +15,18 @@ before_build:
 build_script:
   - cmake .. -DCMAKE_PREFIX_PATH=C:\Qt\5.14\msvc2017_64
   - devenv HashGenerator.sln /deploy Release
-  - copy bin\Release\hashgen.exe %APPVEYOR_BUILD_FOLDER%
+  - copy bin\Release\hashgen.exe %APPVEYOR_BUILD_FOLDER%\hashgen_win_x64.exe
 
 artifacts:
-  - path: hashgen.exe
-    name: hashgen_win_x64
+  - path: hashgen_win_x64.exe
+    name: hashgen
 
 deploy:
-  release: hashgen_win_x64-v$(appveyor_build_version)
   description: 'Hash Generator'
   provider: GitHub
   auth_token:
     secure: oVwM4c3g2neQP4u9719kh6c76dYZfc/zrYc4gobomH3tWDP3m9eFeu0+ojh4VR68
-  artifact: hashgen_win_x64
+  artifact: hashgen
   draft: false
   prerelease: false
   on:
