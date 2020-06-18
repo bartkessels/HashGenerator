@@ -119,7 +119,7 @@ jobs:
       compiler: gcc
       install: *install_macos
       before_script: *before_script
-        - PATH=$MAC_QT_DIR/bin;$PATH
+        - export PATH=$MAC_QT_DIR/bin:$PATH
       script: &script_build_macos
         - cmake .. -DCMAKE_PREFIX_PATH=$MAC_QT_DIR
         - make hashgen
@@ -131,7 +131,7 @@ jobs:
       compiler: clang
       install: *install_macos
       before_script: *before_script
-        - PATH=$MAC_QT_DIR/bin;$PATH
+        - export PATH=$MAC_QT_DIR/bin:$PATH
       script: *script_build_macos
       before_deploy:
         - mv ./bin/hashgen.app ./bin/hashgen_macos_x64.app
