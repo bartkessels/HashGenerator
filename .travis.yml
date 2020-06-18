@@ -20,11 +20,6 @@ addons:
 
 jobs:
   include:
-
-    ###############################
-    ##            TEST
-    ###############################
-
     - stage: build & test
       os: linux
       dist: bionic
