@@ -88,12 +88,15 @@ jobs:
       before_script: *before_script_macos
       script: *script_test_macos
       before_deploy:
+        - mv ./bin/hashgen.app ./hashgen_macos_x64.app
         - mv ./HashGenerator-*.dmg ./hashgen_macos_x64.dmg
       deploy:
         provider: releases
         token:
           secure: "QKliWJ5w6fYmZdpirfYVHl4Cu2kqr0Hozkw3r7WR1BAzgwx5utB5HpdnF2AIDZ0V1a+KohFbJLTTDphEWEDTd9GOXRzVEiB8f6k++7p6qh5LUYP1Gj2ijg2nOCT8OkNHZkxrraedfEWnJFAJVzDakl2c5n2L0ruWBA4+VRmG5mrWn2IwrwqEKhzYeZ2gep5GoRd3QQVP15rHQjZ0A39NsItqF6Zg5Oufxr/Q9YWoWp5YAlcP/UnEeuhtDgXrfVuB0LMdRpDvM1xldvlavgHqSY0qUfHVqkH/EbH7H5KZ3a2sx+fLSBU3zfvfydQ211lRjZsi9zusxnwMZ1A30YBCDl81GQ+4xMLIV/Zm3p+Fcs94d6H5rJW2ZhBq/o9F7p4W/dp4TciMq8PJBv9k6uN/mBIDpdJd5hkPD7UU5zi7w5qULW1+q8pWMEBPSOY8IactFqMGuk42ET2umFgGx2dAe4C62pFX/69qPGlyfM5xM1k6LM9ejCSrlQbk12KcVFfNV02+z5DkEaHyZdqFCmFNuasQ3AGxcjzSPKfhlMd2AAOypJEbaeOZyPIKEWc6LEPUQCHVKPaXLvjVlVuldH3ysT4pbuR/gEKyYAlct34g7JvHNbpv4waNYdsGe2akmvd53fTNU80UluCfUesQg3eMUKm38KJFQi7RygPtDv4h85U="
-        file: ./hashgen_macos_x64.dmg
+        file:
+          - ./hashgen_macos_x64.app
+          - ./hashgen_macos_x64.dmg
         cleanup: false
         skip_cleanup: true
         on:
