@@ -133,9 +133,9 @@ $ cpack -g DragNDrop
 
 ### 5.2 Linux
 
-On Linux we'll create a tarball because there are so many distributions the only cross platform option is to generate a tarball.
+On Linux we'll create a bash script which can install Hash Generator.
 
-By executing the following command you'll get the `HashGenerator-<version-number>-Linux.tar.gz` file in the `build` directory.
+By executing the following command you'll get the `HashGenerator-<version-number>-Linux.sh` file in the `build` directory.
 
 ```bash
 $ cpack
